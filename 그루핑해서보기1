@@ -1,0 +1,7 @@
+SELECT 
+    gender, 
+    COUNT(*), 
+    AVG(height), 
+    MIN(weight)
+    FROM member 
+    GROUP BY gender;
