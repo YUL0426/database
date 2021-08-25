@@ -1,0 +1,48 @@
+코드잇에서 운영하는 영화관의 2020년도 상영 영화 실적은 아래와 같이 생긴 2020_movie_report라는 테이블에서 관리되고 있습니다. 
+
+id	name	category	main_month	view_count
+1	태극권 배우기	Action	3	120000
+2	여름 왕국	Fantasy	6	10000000
+3	성태후 일병 구하기	Drama	5	5000000
+4	그날 너를 보았다	Romance	4	7000000
+5	다이이지	Action	5	2300000
+6	쓰리캅스	Action	5	7000000
+7	매드미니멈	Action	4	8500000
+8	무인도, 20일	Thriller	4	1000000
+9	허씨표류기	Comedy	5	300000
+10	링거전쟁	Thriller	3	150000
+11	타임백투유	Romance	3	5000000
+12	그렇게 살아간다	Drama	3	3200000
+13	배틀스타	SF	4	1650000
+14	내일은 결혼식	Comedy	5	2000000
+15	화성탈출	SF	5	4500000
+이 테이블에는 
+
+name(영화 이름)
+category(영화 장르)
+main_month(주로 상영한 달)
+view_count(총 관객 수)
+이렇게 4가지 컬럼이 있는데요.
+
+이 테이블의 row들을 
+
+(1) category 컬럼, main_month 컬럼을 기준으로 그루핑하고 
+
+(2) 그룹들 중에서 주 상영 월이 5월이고, view_count의 합이 3000000(삼백만) 이상인 것들만 선별하세요. 
+
+(3) 그리고 category 컬럼, main_month 컬럼, 각 그룹에 속한 row의 개수, 각 그룹의 view_count 합, 이 4가지 컬럼을 조회하세요.  
+
+(4) 마지막으로 각 그룹에 속한 row의 개수 컬럼에는 '영화 수'라는 alias를, 각 그룹의 view_count 합 컬럼에는 '총 관객 수'라는 alias를 붙이세요.
+
+
+코드)
+SELECT category, main_month, COUNT(*) AS '영화 수', SUM(view_count) AS '총 관객 수' 
+
+FROM 2020_movie_report
+
+GROUP BY category, main_month
+
+HAVING main_month=5 AND SUM(view_count) >= 3000000;
+
+
+차근차근 SQL 문을 직접 작성해보세요.
