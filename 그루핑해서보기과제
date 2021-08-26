@@ -44,5 +44,3 @@ GROUP BY category, main_month
 
 HAVING main_month=5 AND SUM(view_count) >= 3000000;
 
-
-차근차근 SQL 문을 직접 작성해보세요.
