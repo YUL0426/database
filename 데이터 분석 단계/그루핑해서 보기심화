@@ -1,0 +1,12 @@
+SELECT SUBSTRING(address, 1, 2) as region, gender, COUNT(*)
+FROM member
+GROUP BY SUBSTRING(address, 1, 2), gender WITH ROLLUP
+HAVING region IS NOT NULL
+ORDER BY region ASC, gender DESC;
+
+*그런데 사실 이 결과는 부분 총계 row가 하나 빠져있는 상태
+*HAVING region IS NOT NULL 절 때문
+*회원 중에서는 address 컬럼이 NULL인 회원들도 있었습니다. 그럼 당연히 그 회원들은 region도 NULL. 이런 회원들이 있는 그룹은 결과에서 제외하기 위해 이 HAVING 절을 추가한 것
+
+
+
